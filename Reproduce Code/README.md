@@ -111,13 +111,17 @@ python -m pip install -r requirements.txt
 jupyter notebook Reproduce_MobileNetV2_Waste_Classification.ipynb
 ```
 
+`requirements.txt` is optional: the first cell of Section 1 installs any missing library
+automatically. Installing from `requirements.txt` up front is still recommended so the
+environment is reproducible.
+
 The local `Datasets/` folder is used automatically.
 
 ## Notebook structure
 
 | Section | Content |
 |---|---|
-| 1 | Setup and configuration (paths, hyperparameters, runtime detection) |
+| 1 | Setup and configuration (auto-install of missing libraries, paths, hyperparameters, runtime detection) |
 | 2 | Dataset search (multi-platform resolver) |
 | 3 | Exploratory data analysis + class-balance and image-statistics summary |
 | 4 | Stratified 8:1:1 split with MD5 deduplication |

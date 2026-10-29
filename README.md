@@ -72,6 +72,10 @@ python -m pip install -r requirements.txt
 jupyter notebook Reproduce_MobileNetV2_Waste_Classification.ipynb
 ```
 
+Tidak wajib: `requirements.txt` opsional karena notebook memasang library yang kurang sendiri
+di cell pertama Bagian 1. `pip install -r requirements.txt` tetap disarankan agar environment
+dapat direproduksi persis.
+
 Path dataset lokal yang dipakai otomatis: `../Datasets/images/images/`. Kalau dataset berada
 di tempat lain, set environment variable:
 
@@ -111,7 +115,7 @@ memengaruhi laporan superclass, bukan model 30 kelas. Kalau interpretasi kelas b
 
 ## Isi notebook
 
-1. Setup dan konfigurasi
+1. Setup dan konfigurasi (+ auto-install library yang belum ada)
 2. Pencarian dataset (resolver multi-platform)
 3. Exploratory data analysis (+ ringkasan keseimbangan kelas dan statistik gambar)
 4. Split 8:1:1 stratified dengan dedupe MD5
