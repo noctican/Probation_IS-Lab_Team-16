@@ -1,0 +1,10 @@
+# Dataset archives (too large for GitHub, >100 MB limit)
+Datasets/*.zip
+
+# Notebook outputs (checkpoints ~100 MB, figures, CSV metrics)
+Reproduce Code/outputs/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
