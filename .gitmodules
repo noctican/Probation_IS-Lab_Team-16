@@ -1,0 +1,3 @@
+[submodule "Source Code"]
+	path = Source Code
+	url = https://github.com/DLP-11/Trash-classification.git
