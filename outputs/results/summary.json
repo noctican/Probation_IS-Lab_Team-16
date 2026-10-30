@@ -1,0 +1,143 @@
+{
+  "paper": {
+    "title": "Application of MobileNetV2 to waste classification",
+    "authors": "Yong, Ma, Sun, Du",
+    "journal": "PLOS ONE 18(3): e0282336",
+    "doi": "10.1371/journal.pone.0282336"
+  },
+  "dataset": {
+    "source": "https://www.kaggle.com/datasets/alistairking/recyclable-and-household-waste-classification",
+    "source_groups": [
+      "default",
+      "real_world"
+    ],
+    "deduplication": "md5",
+    "duplicates_removed": 3737,
+    "root": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/Datasets/images/images",
+    "num_classes": 30,
+    "num_images": 11263,
+    "split_sizes": {
+      "train": 9006,
+      "val": 1124,
+      "test": 1133
+    },
+    "class_names": [
+      "aerosol_cans",
+      "aluminum_food_cans",
+      "aluminum_soda_cans",
+      "cardboard_boxes",
+      "cardboard_packaging",
+      "clothing",
+      "coffee_grounds",
+      "disposable_plastic_cutlery",
+      "eggshells",
+      "food_waste",
+      "glass_beverage_bottles",
+      "glass_cosmetic_containers",
+      "glass_food_jars",
+      "magazines",
+      "newspaper",
+      "office_paper",
+      "paper_cups",
+      "plastic_cup_lids",
+      "plastic_detergent_bottles",
+      "plastic_food_containers",
+      "plastic_shopping_bags",
+      "plastic_soda_bottles",
+      "plastic_straws",
+      "plastic_trash_bags",
+      "plastic_water_bottles",
+      "shoes",
+      "steel_food_cans",
+      "styrofoam_cups",
+      "styrofoam_food_containers",
+      "tea_bags"
+    ],
+    "major_names": [
+      "Kitchen waste",
+      "Recyclable waste",
+      "Other waste"
+    ],
+    "class_to_major": {
+      "coffee_grounds": "Kitchen waste",
+      "eggshells": "Kitchen waste",
+      "food_waste": "Kitchen waste",
+      "tea_bags": "Kitchen waste",
+      "aerosol_cans": "Recyclable waste",
+      "aluminum_food_cans": "Recyclable waste",
+      "aluminum_soda_cans": "Recyclable waste",
+      "cardboard_boxes": "Recyclable waste",
+      "cardboard_packaging": "Recyclable waste",
+      "clothing": "Recyclable waste",
+      "glass_beverage_bottles": "Recyclable waste",
+      "glass_cosmetic_containers": "Recyclable waste",
+      "glass_food_jars": "Recyclable waste",
+      "magazines": "Recyclable waste",
+      "newspaper": "Recyclable waste",
+      "office_paper": "Recyclable waste",
+      "paper_cups": "Recyclable waste",
+      "plastic_detergent_bottles": "Recyclable waste",
+      "plastic_food_containers": "Recyclable waste",
+      "plastic_shopping_bags": "Recyclable waste",
+      "plastic_soda_bottles": "Recyclable waste",
+      "plastic_water_bottles": "Recyclable waste",
+      "shoes": "Recyclable waste",
+      "steel_food_cans": "Recyclable waste",
+      "disposable_plastic_cutlery": "Other waste",
+      "plastic_cup_lids": "Other waste",
+      "plastic_straws": "Other waste",
+      "plastic_trash_bags": "Other waste",
+      "styrofoam_cups": "Other waste",
+      "styrofoam_food_containers": "Other waste"
+    }
+  },
+  "training": {
+    "img_size": 224,
+    "batch_size": 42,
+    "num_epochs": 50,
+    "learning_rate": 0.001,
+    "momentum": 0.9,
+    "step_size": 7,
+    "gamma": 0.1,
+    "cnn_batch_size": 16,
+    "cnn_epochs": 30,
+    "test_batch_size": 128,
+    "seed": 42,
+    "device": "cuda",
+    "quick_test": false
+  },
+  "results": {
+    "mobilenetv2": {
+      "accuracy": 0.851721094439541,
+      "loss": 0.46528696987551077,
+      "top3_accuracy": 0.9611650485436893,
+      "major_accuracy": 0.9620476610767873,
+      "major_prob_accuracy": 0.9655781112091791,
+      "macro_f1": 0.8441456384436307,
+      "parameters": 2262302
+    },
+    "cnn": {
+      "accuracy": 0.4007060900264784,
+      "loss": 4.341325488220982,
+      "top3_accuracy": 0.5666372462488968,
+      "major_accuracy": 0.7202118270079435,
+      "major_prob_accuracy": 0.7378640776699029,
+      "macro_f1": 0.3922970320117356,
+      "parameters": 23911262
+    },
+    "accuracy_delta_mobilenet_minus_cnn": 0.45101500441306264
+  },
+  "artifacts": {
+    "mobilenetv2_full_model": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv2_trash30_full.pt",
+    "mobilenetv2_checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv2_trash30_best.pt",
+    "cnn_full_model": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/cnn_baseline_trash30_full.pt",
+    "cnn_checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/cnn_baseline_trash30_best.pt"
+  },
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.15.0+cu132",
+    "torchvision": "0.29.2+cu132",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0"
+  }
+}
