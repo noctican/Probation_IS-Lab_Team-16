@@ -8,3 +8,9 @@ Reproduce Code/outputs/
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# Generated architecture diagrams (regenerable HTML/SVG/PNG)
+Diagrams/
+
+# Presentation Documents
+Report & Presentation/
