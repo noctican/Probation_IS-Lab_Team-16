@@ -1,0 +1,197 @@
+{
+  "paper": {
+    "title": "Application of MobileNetV2 to waste classification",
+    "authors": "Yong, Ma, Sun, Du",
+    "journal": "PLOS ONE 18(3): e0282336",
+    "doi": "10.1371/journal.pone.0282336"
+  },
+  "arch_paper": {
+    "title": "MobileNetV4 - Universal Models for the Mobile Ecosystem",
+    "authors": "Qin, Leichner, Delakis, Foronni, Luo, Yang, Wang, Banbury, Ye, Akin, et al.",
+    "arxiv": "2404.10518",
+    "weights": "mobilenetv4_conv_small.e2400_r224_in1k",
+    "weights_source": "timm"
+  },
+  "arch": "mobilenet_v4_conv_small",
+  "timm_model": "mobilenetv4_conv_small.e2400_r224_in1k",
+  "pretrained": true,
+  "dataset": {
+    "root": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/Datasets/images/images",
+    "split_manifest": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/splits/all.csv",
+    "num_classes": 30,
+    "num_images": 11263,
+    "split_sizes": {
+      "train": 9006,
+      "val": 1124,
+      "test": 1133
+    },
+    "major_names": [
+      "Kitchen waste",
+      "Recyclable waste",
+      "Other waste"
+    ],
+    "class_to_major": {
+      "coffee_grounds": "Kitchen waste",
+      "eggshells": "Kitchen waste",
+      "food_waste": "Kitchen waste",
+      "tea_bags": "Kitchen waste",
+      "aerosol_cans": "Recyclable waste",
+      "aluminum_food_cans": "Recyclable waste",
+      "aluminum_soda_cans": "Recyclable waste",
+      "cardboard_boxes": "Recyclable waste",
+      "cardboard_packaging": "Recyclable waste",
+      "clothing": "Recyclable waste",
+      "glass_beverage_bottles": "Recyclable waste",
+      "glass_cosmetic_containers": "Recyclable waste",
+      "glass_food_jars": "Recyclable waste",
+      "magazines": "Recyclable waste",
+      "newspaper": "Recyclable waste",
+      "office_paper": "Recyclable waste",
+      "paper_cups": "Recyclable waste",
+      "plastic_detergent_bottles": "Recyclable waste",
+      "plastic_food_containers": "Recyclable waste",
+      "plastic_shopping_bags": "Recyclable waste",
+      "plastic_soda_bottles": "Recyclable waste",
+      "plastic_water_bottles": "Recyclable waste",
+      "shoes": "Recyclable waste",
+      "steel_food_cans": "Recyclable waste",
+      "disposable_plastic_cutlery": "Other waste",
+      "plastic_cup_lids": "Other waste",
+      "plastic_straws": "Other waste",
+      "plastic_trash_bags": "Other waste",
+      "styrofoam_cups": "Other waste",
+      "styrofoam_food_containers": "Other waste"
+    }
+  },
+  "training": {
+    "img_size": 224,
+    "batch_size": 42,
+    "num_epochs": 50,
+    "learning_rate": 0.001,
+    "momentum": 0.9,
+    "step_size": 7,
+    "gamma": 0.1,
+    "test_batch_size": 128,
+    "early_stopping_patience": 10,
+    "early_stop_min_epochs": 10,
+    "seed": 42,
+    "device": "cuda",
+    "quick_test": false
+  },
+  "variants": {
+    "mobilenetv4convs": {
+      "label": "A \u00b7 baseline",
+      "config": {
+        "scheduler": "step",
+        "label_smoothing": 0.0,
+        "weight_decay": 0.0,
+        "class_weight": false,
+        "augmentation": "randomresizedcrop+flip"
+      },
+      "best_epoch": 21,
+      "best_val_acc": 0.4866548042704626,
+      "epochs_run": 31,
+      "early_stopped": true,
+      "parameters": 2531454,
+      "metrics": {
+        "accuracy": 0.48984995586937335,
+        "loss": 1.8220947163355423,
+        "top3_accuracy": 0.6937334510150044,
+        "major_accuracy": 0.7784642541924095,
+        "major_prob_accuracy": 0.8120035304501324,
+        "macro_f1": 0.47469373449653046,
+        "weighted_f1": 0.4796137801581833,
+        "macro_f1_major": 0.7202714747988782,
+        "group_accuracy": {
+          "default": 0.5354107648725213,
+          "real_world": 0.41451990632318503
+        }
+      },
+      "artifacts": {
+        "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv4convs_trash30_best.pt",
+        "full_model": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv4convs_trash30_full.pt",
+        "history": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/mobilenetv4convs_history.csv",
+        "metrics": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/mobilenetv4convs_metrics.json"
+      }
+    },
+    "mobilenetv4convs_cosine": {
+      "label": "B \u00b7 cosine",
+      "config": {
+        "scheduler": "cosine",
+        "label_smoothing": 0.1,
+        "weight_decay": 0.0001,
+        "class_weight": false,
+        "augmentation": "randomresizedcrop+flip"
+      },
+      "best_epoch": 50,
+      "best_val_acc": 0.6948398576512456,
+      "epochs_run": 50,
+      "early_stopped": false,
+      "parameters": 2531454,
+      "metrics": {
+        "accuracy": 0.6981465136804943,
+        "loss": 1.1297384539959394,
+        "top3_accuracy": 0.852603706972639,
+        "major_accuracy": 0.9002647837599294,
+        "major_prob_accuracy": 0.8940864960282436,
+        "macro_f1": 0.6897732002403612,
+        "weighted_f1": 0.6963500622181956,
+        "macro_f1_major": 0.8660893183322284,
+        "group_accuracy": {
+          "default": 0.7492917847025495,
+          "real_world": 0.6135831381733021
+        }
+      },
+      "artifacts": {
+        "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv4convs_cosine_trash30_best.pt",
+        "full_model": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv4convs_cosine_trash30_full.pt",
+        "history": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/mobilenetv4convs_cosine_history.csv",
+        "metrics": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/mobilenetv4convs_cosine_metrics.json"
+      }
+    },
+    "mobilenetv4convs_aug": {
+      "label": "C \u00b7 augment",
+      "config": {
+        "scheduler": "step",
+        "label_smoothing": 0.0,
+        "weight_decay": 0.0,
+        "class_weight": true,
+        "augmentation": "trivialaugment+colorjitter+randomerasing"
+      },
+      "best_epoch": 30,
+      "best_val_acc": 0.38701067615658363,
+      "epochs_run": 40,
+      "early_stopped": true,
+      "parameters": 2531454,
+      "metrics": {
+        "accuracy": 0.35127978817299205,
+        "loss": 2.2730386852692,
+        "top3_accuracy": 0.5763459841129744,
+        "major_accuracy": 0.6999117387466902,
+        "major_prob_accuracy": 0.7590467784642542,
+        "macro_f1": 0.32630899582819345,
+        "weighted_f1": 0.33245914674832505,
+        "macro_f1_major": 0.6248127044388058,
+        "group_accuracy": {
+          "default": 0.3909348441926346,
+          "real_world": 0.2857142857142857
+        }
+      },
+      "artifacts": {
+        "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv4convs_aug_trash30_best.pt",
+        "full_model": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv4convs_aug_trash30_full.pt",
+        "history": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/mobilenetv4convs_aug_history.csv",
+        "metrics": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/mobilenetv4convs_aug_metrics.json"
+      }
+    }
+  },
+  "best_variant": "mobilenetv4convs_cosine",
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.15.0+cu132",
+    "torchvision": "0.29.2+cu132",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "timm": "1.0.31"
+  }
+}
