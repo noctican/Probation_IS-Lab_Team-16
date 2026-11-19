@@ -1,0 +1,11 @@
+model,model_id,parameters_m,gmacs,checkpoint
+efficientformerv2_s0_in1k,efficientformerv2_s0.snap_dist_in1k,3.256876,0.395551104,efficientformerv2_s0_in1k_aug_trash30_best.pt
+mobilenetv2,mobilenet_v2,2.262302,0.299532672,mobilenetv2_trash30_best.pt
+mobilenetv3large,mobilenetv3_large_100.ra4_e3600_r224_in1k,4.240462,0.21534816,mobilenetv3large_aug_trash30_best.pt
+mobilenetv3large_tv,mobilenet_v3_large,4.240462,0.21534816,mobilenetv3large_tv_aug_trash30_best.pt
+mobilenetv3small,mobilenet_v3_small,1.548606,0.05551712,mobilenetv3small_aug_trash30_best.pt
+mobilenetv4convs,mobilenetv4_conv_small.e2400_r224_in1k,2.531454,0.184763968,mobilenetv4convs_aug_trash30_best.pt
+mobilevitxs,mobilevit_xs.cvnets_in1k,1.944398,0.771967808,mobilevitxs_aug_trash30_best.pt
+repvit_m0_9_in1k,repvit_m0_9.dist_450e_in1k,4.742428,0.816535872,repvit_m0_9_in1k_aug_trash30_best.pt
+starnet_s1_in1k,starnet_s1.in1k,2.681958,0.421691136,starnet_s1_in1k_aug_trash30_best.pt
+starnet_s2_in1k,starnet_s2.in1k,3.432734,0.543865344,starnet_s2_in1k_aug_trash30_best.pt
