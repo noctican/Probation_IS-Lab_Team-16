@@ -1,0 +1,188 @@
+{
+  "paper": {
+    "title": "Application of MobileNetV2 to waste classification",
+    "authors": "Yong, Ma, Sun, Du",
+    "journal": "PLOS ONE 18(3): e0282336",
+    "doi": "10.1371/journal.pone.0282336"
+  },
+  "arch": "efficientformerv2_s0",
+  "pretrained": true,
+  "dataset": {
+    "root": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/Datasets/images/images",
+    "split_manifest": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/splits/all.csv",
+    "num_classes": 30,
+    "num_images": 11263,
+    "split_sizes": {
+      "train": 9006,
+      "val": 1124,
+      "test": 1133
+    },
+    "major_names": [
+      "Kitchen waste",
+      "Recyclable waste",
+      "Other waste"
+    ],
+    "class_to_major": {
+      "coffee_grounds": "Kitchen waste",
+      "eggshells": "Kitchen waste",
+      "food_waste": "Kitchen waste",
+      "tea_bags": "Kitchen waste",
+      "aerosol_cans": "Recyclable waste",
+      "aluminum_food_cans": "Recyclable waste",
+      "aluminum_soda_cans": "Recyclable waste",
+      "cardboard_boxes": "Recyclable waste",
+      "cardboard_packaging": "Recyclable waste",
+      "clothing": "Recyclable waste",
+      "glass_beverage_bottles": "Recyclable waste",
+      "glass_cosmetic_containers": "Recyclable waste",
+      "glass_food_jars": "Recyclable waste",
+      "magazines": "Recyclable waste",
+      "newspaper": "Recyclable waste",
+      "office_paper": "Recyclable waste",
+      "paper_cups": "Recyclable waste",
+      "plastic_detergent_bottles": "Recyclable waste",
+      "plastic_food_containers": "Recyclable waste",
+      "plastic_shopping_bags": "Recyclable waste",
+      "plastic_soda_bottles": "Recyclable waste",
+      "plastic_water_bottles": "Recyclable waste",
+      "shoes": "Recyclable waste",
+      "steel_food_cans": "Recyclable waste",
+      "disposable_plastic_cutlery": "Other waste",
+      "plastic_cup_lids": "Other waste",
+      "plastic_straws": "Other waste",
+      "plastic_trash_bags": "Other waste",
+      "styrofoam_cups": "Other waste",
+      "styrofoam_food_containers": "Other waste"
+    }
+  },
+  "training": {
+    "img_size": 224,
+    "batch_size": 42,
+    "num_epochs": 50,
+    "learning_rate": 0.002,
+    "momentum": 0.9,
+    "step_size": 7,
+    "gamma": 0.1,
+    "test_batch_size": 128,
+    "early_stopping_patience": 10,
+    "early_stop_min_epochs": 10,
+    "seed": 42,
+    "device": "cuda:1",
+    "quick_test": false
+  },
+  "variants": {
+    "efficientformerv2_s0_in1k": {
+      "label": "A \u00b7 baseline",
+      "config": {
+        "scheduler": "step",
+        "label_smoothing": 0.0,
+        "weight_decay": 0.0,
+        "class_weight": false,
+        "augmentation": "randomresizedcrop+flip"
+      },
+      "best_epoch": 11,
+      "best_val_acc": 0.7597864768683273,
+      "epochs_run": 21,
+      "early_stopped": true,
+      "parameters": 3256876,
+      "metrics": {
+        "accuracy": 0.7864077669902912,
+        "loss": 0.6921049335943527,
+        "top3_accuracy": 0.9435127978817299,
+        "major_accuracy": 0.9240953221535746,
+        "major_prob_accuracy": 0.9249779346866726,
+        "macro_f1": 0.7796605803743567,
+        "weighted_f1": 0.7857837349164933,
+        "macro_f1_major": 0.900288874952459,
+        "group_accuracy": {
+          "default": 0.8356940509915014,
+          "real_world": 0.7049180327868853
+        }
+      },
+      "artifacts": {
+        "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/efficientformerv2_s0_in1k_trash30_best.pt",
+        "full_model": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/efficientformerv2_s0_in1k_trash30_full.pt",
+        "history": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/efficientformerv2_s0_in1k_history.csv",
+        "metrics": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/efficientformerv2_s0_in1k_metrics.json"
+      }
+    },
+    "efficientformerv2_s0_in1k_cosine": {
+      "label": "B \u00b7 cosine",
+      "config": {
+        "scheduler": "cosine",
+        "label_smoothing": 0.1,
+        "weight_decay": 0.0001,
+        "class_weight": false,
+        "augmentation": "randomresizedcrop+flip"
+      },
+      "best_epoch": 45,
+      "best_val_acc": 0.8469750889679715,
+      "epochs_run": 50,
+      "early_stopped": false,
+      "parameters": 3256876,
+      "metrics": {
+        "accuracy": 0.8393645189761695,
+        "loss": 0.5978773912285033,
+        "top3_accuracy": 0.9558693733451015,
+        "major_accuracy": 0.9611650485436893,
+        "major_prob_accuracy": 0.9602824360105914,
+        "macro_f1": 0.8309541823047902,
+        "weighted_f1": 0.8387162855703997,
+        "macro_f1_major": 0.9471812784090489,
+        "group_accuracy": {
+          "default": 0.8711048158640227,
+          "real_world": 0.7868852459016393
+        }
+      },
+      "artifacts": {
+        "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/efficientformerv2_s0_in1k_cosine_trash30_best.pt",
+        "full_model": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/efficientformerv2_s0_in1k_cosine_trash30_full.pt",
+        "history": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/efficientformerv2_s0_in1k_cosine_history.csv",
+        "metrics": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/efficientformerv2_s0_in1k_cosine_metrics.json"
+      }
+    },
+    "efficientformerv2_s0_in1k_aug": {
+      "label": "C \u00b7 augment",
+      "config": {
+        "scheduler": "step",
+        "label_smoothing": 0.0,
+        "weight_decay": 0.0,
+        "class_weight": true,
+        "augmentation": "resize256+centercrop+flip+trivialaugment+colorjitter+randomerasing"
+      },
+      "best_epoch": 18,
+      "best_val_acc": 0.7935943060498221,
+      "epochs_run": 28,
+      "early_stopped": true,
+      "parameters": 3256876,
+      "metrics": {
+        "accuracy": 0.8093556928508385,
+        "loss": 0.6266291636549469,
+        "top3_accuracy": 0.9461606354810238,
+        "major_accuracy": 0.9435127978817299,
+        "major_prob_accuracy": 0.9399823477493381,
+        "macro_f1": 0.8064694788860598,
+        "weighted_f1": 0.8091441889857454,
+        "macro_f1_major": 0.9238487597983633,
+        "group_accuracy": {
+          "default": 0.8555240793201133,
+          "real_world": 0.7330210772833724
+        }
+      },
+      "artifacts": {
+        "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/efficientformerv2_s0_in1k_aug_trash30_best.pt",
+        "full_model": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/efficientformerv2_s0_in1k_aug_trash30_full.pt",
+        "history": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/efficientformerv2_s0_in1k_aug_history.csv",
+        "metrics": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/efficientformerv2_s0_in1k_aug_metrics.json"
+      }
+    }
+  },
+  "best_variant": "efficientformerv2_s0_in1k_cosine",
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.15.0+cu132",
+    "torchvision": "0.29.2+cu132",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0"
+  }
+}
