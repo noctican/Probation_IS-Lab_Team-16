@@ -1,0 +1,2 @@
+Varian,Prefix,Test accuracy (%),Cross-entropy loss,Top-3 accuracy (%),3-class accuracy (%),3-class prob accuracy (%),Macro F1 (30 kelas),Macro F1 (3 major class),Parameters (M)
+Cosine + Augment (gabungan),mobilenetv3small_cosine_aug,82.17122683142101,0.6258406913185793,94.88084730803178,93.8217122683142,94.0864960282436,0.811844472574959,0.9167022991402352,1.548606
