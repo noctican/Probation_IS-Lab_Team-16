@@ -1,0 +1,270 @@
+{
+  "run": "kfold_4models_dedupe_gui",
+  "dataset": {
+    "curation": "dedupe_gui (duplicate_groups_with_decision.csv / keep_decisions.json)",
+    "split_manifest": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/splits/dedupe_gui_all.csv",
+    "num_images": 11236,
+    "n_splits": 3,
+    "protocol": "StratifiedKFold(shuffle, seed 42) on 30-class label; per outer fold test=1/K, trainval=(K-1)/K split stratified 90/10 into train/val for early stopping"
+  },
+  "recipe_note": "Cosine recipe per model (LR: RepViT/StarNet-S2 2e-3, MNV2/MNV3-Small 1e-3; SGD momentum 0.9, CosineAnnealingLR T_max=NUM_EPOCHS, ls 0.1, wd 1e-4). Tanpa MobileNetV3-Large TV.",
+  "training_defaults": {
+    "optimizer": "SGD",
+    "momentum": 0.9,
+    "scheduler": "cosine (CosineAnnealingLR, T_max=NUM_EPOCHS)",
+    "label_smoothing": 0.1,
+    "weight_decay": 0.0001,
+    "augmentation": "randomresizedcrop+flip",
+    "epochs": 50,
+    "early_stopping_patience": 10,
+    "early_stop_min_epochs": 10,
+    "batch_size": 42,
+    "test_batch_size": 128,
+    "img_size": 224,
+    "seed": 42,
+    "n_splits": 3
+  },
+  "models": {
+    "repvit_m0_9_in1k_kfold_dedupe_gui": {
+      "label": "RepViT-M0.9 (cosine, kfold dedupe_gui)",
+      "arch": "repvit_m0_9",
+      "config": {
+        "learning_rate": 0.002,
+        "momentum": 0.9,
+        "weight_decay": 0.0001,
+        "label_smoothing": 0.1,
+        "scheduler": "cosine",
+        "augmentation": "randomresizedcrop+flip"
+      },
+      "params_m": 4.742428,
+      "gmacs": 0.816535872,
+      "folds": [
+        {
+          "fold": 0,
+          "tag": "repvit_m0_9_in1k_kfold_dedupe_gui_f0",
+          "best_epoch": 36,
+          "best_val_acc": 0.842456608811749,
+          "metrics": {
+            "accuracy": 0.8686599038974907,
+            "loss": 0.5185140944774687,
+            "top3_accuracy": 0.9690336358782702,
+            "macro_f1": 0.8614619186341372,
+            "major_accuracy": 0.9631607047517352
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/repvit_m0_9_in1k_kfold_dedupe_gui_f0_trash30_best.pt"
+        },
+        {
+          "fold": 1,
+          "tag": "repvit_m0_9_in1k_kfold_dedupe_gui_f1",
+          "best_epoch": 46,
+          "best_val_acc": 0.876,
+          "metrics": {
+            "accuracy": 0.8560747663551402,
+            "loss": 0.5528249765110907,
+            "top3_accuracy": 0.9666221628838452,
+            "macro_f1": 0.8490641285989412,
+            "major_accuracy": 0.9562082777036048
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/repvit_m0_9_in1k_kfold_dedupe_gui_f1_trash30_best.pt"
+        },
+        {
+          "fold": 2,
+          "tag": "repvit_m0_9_in1k_kfold_dedupe_gui_f2",
+          "best_epoch": 46,
+          "best_val_acc": 0.86,
+          "metrics": {
+            "accuracy": 0.8616822429906542,
+            "loss": 0.5555681276066758,
+            "top3_accuracy": 0.9663551401869159,
+            "macro_f1": 0.85365513771205,
+            "major_accuracy": 0.9596795727636849
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/repvit_m0_9_in1k_kfold_dedupe_gui_f2_trash30_best.pt"
+        }
+      ]
+    },
+    "starnet_s2_in1k_kfold_dedupe_gui": {
+      "label": "StarNet-S2 (cosine, kfold dedupe_gui)",
+      "arch": "starnet_s2",
+      "config": {
+        "learning_rate": 0.002,
+        "momentum": 0.9,
+        "weight_decay": 0.0001,
+        "label_smoothing": 0.1,
+        "scheduler": "cosine",
+        "augmentation": "randomresizedcrop+flip"
+      },
+      "params_m": 3.432734,
+      "gmacs": 0.543865344,
+      "folds": [
+        {
+          "fold": 0,
+          "tag": "starnet_s2_in1k_kfold_dedupe_gui_f0",
+          "best_epoch": 24,
+          "best_val_acc": 0.807743658210948,
+          "metrics": {
+            "accuracy": 0.8200747463961559,
+            "loss": 0.6734050416208115,
+            "top3_accuracy": 0.9407367859049653,
+            "macro_f1": 0.8145669873292751,
+            "major_accuracy": 0.9442071542979178
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/starnet_s2_in1k_kfold_dedupe_gui_f0_trash30_best.pt"
+        },
+        {
+          "fold": 1,
+          "tag": "starnet_s2_in1k_kfold_dedupe_gui_f1",
+          "best_epoch": 42,
+          "best_val_acc": 0.8413333333333333,
+          "metrics": {
+            "accuracy": 0.8029372496662216,
+            "loss": 0.7273107537599367,
+            "top3_accuracy": 0.9332443257676902,
+            "macro_f1": 0.7962995563023568,
+            "major_accuracy": 0.930841121495327
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/starnet_s2_in1k_kfold_dedupe_gui_f1_trash30_best.pt"
+        },
+        {
+          "fold": 2,
+          "tag": "starnet_s2_in1k_kfold_dedupe_gui_f2",
+          "best_epoch": 33,
+          "best_val_acc": 0.836,
+          "metrics": {
+            "accuracy": 0.8328437917222964,
+            "loss": 0.6278181794011227,
+            "top3_accuracy": 0.9484646194926569,
+            "macro_f1": 0.8244893509111555,
+            "major_accuracy": 0.946328437917223
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/starnet_s2_in1k_kfold_dedupe_gui_f2_trash30_best.pt"
+        }
+      ]
+    },
+    "mobilenetv2_kfold_dedupe_gui": {
+      "label": "MobileNetV2 (cosine, kfold dedupe_gui)",
+      "arch": "mobilenet_v2",
+      "config": {
+        "learning_rate": 0.001,
+        "momentum": 0.9,
+        "weight_decay": 0.0001,
+        "label_smoothing": 0.1,
+        "scheduler": "cosine",
+        "augmentation": "randomresizedcrop+flip"
+      },
+      "params_m": 2.262302,
+      "gmacs": 0.299532672,
+      "folds": [
+        {
+          "fold": 0,
+          "tag": "mobilenetv2_kfold_dedupe_gui_f0",
+          "best_epoch": 15,
+          "best_val_acc": 0.8411214953271028,
+          "metrics": {
+            "accuracy": 0.8507741591030432,
+            "loss": 0.5841421643744417,
+            "top3_accuracy": 0.9564869193806728,
+            "macro_f1": 0.8470833049828855,
+            "major_accuracy": 0.9580886278697277
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv2_kfold_dedupe_gui_f0_trash30_best.pt"
+        },
+        {
+          "fold": 1,
+          "tag": "mobilenetv2_kfold_dedupe_gui_f1",
+          "best_epoch": 19,
+          "best_val_acc": 0.8693333333333333,
+          "metrics": {
+            "accuracy": 0.8389853137516688,
+            "loss": 0.6176647239438046,
+            "top3_accuracy": 0.9567423230974633,
+            "macro_f1": 0.8333019433958143,
+            "major_accuracy": 0.9484646194926569
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv2_kfold_dedupe_gui_f1_trash30_best.pt"
+        },
+        {
+          "fold": 2,
+          "tag": "mobilenetv2_kfold_dedupe_gui_f2",
+          "best_epoch": 31,
+          "best_val_acc": 0.8573333333333333,
+          "metrics": {
+            "accuracy": 0.8518024032042724,
+            "loss": 0.5883461575960126,
+            "top3_accuracy": 0.9522029372496662,
+            "macro_f1": 0.8453729345172357,
+            "major_accuracy": 0.957543391188251
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv2_kfold_dedupe_gui_f2_trash30_best.pt"
+        }
+      ]
+    },
+    "mobilenetv3small_kfold_dedupe_gui": {
+      "label": "MobileNetV3-Small (cosine, kfold dedupe_gui)",
+      "arch": "mobilenet_v3_small",
+      "config": {
+        "learning_rate": 0.001,
+        "momentum": 0.9,
+        "weight_decay": 0.0001,
+        "label_smoothing": 0.1,
+        "scheduler": "cosine",
+        "augmentation": "randomresizedcrop+flip"
+      },
+      "params_m": 1.548606,
+      "gmacs": 0.05551712,
+      "folds": [
+        {
+          "fold": 0,
+          "tag": "mobilenetv3small_kfold_dedupe_gui_f0",
+          "best_epoch": 29,
+          "best_val_acc": 0.7930574098798397,
+          "metrics": {
+            "accuracy": 0.806727175654031,
+            "loss": 0.7211682139649724,
+            "top3_accuracy": 0.9388681260010678,
+            "macro_f1": 0.8021864395642525,
+            "major_accuracy": 0.9431393486385478
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv3small_kfold_dedupe_gui_f0_trash30_best.pt"
+        },
+        {
+          "fold": 1,
+          "tag": "mobilenetv3small_kfold_dedupe_gui_f1",
+          "best_epoch": 43,
+          "best_val_acc": 0.832,
+          "metrics": {
+            "accuracy": 0.8048064085447263,
+            "loss": 0.7004652236587056,
+            "top3_accuracy": 0.9428571428571428,
+            "macro_f1": 0.7985017295230106,
+            "major_accuracy": 0.9337783711615487
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv3small_kfold_dedupe_gui_f1_trash30_best.pt"
+        },
+        {
+          "fold": 2,
+          "tag": "mobilenetv3small_kfold_dedupe_gui_f2",
+          "best_epoch": 44,
+          "best_val_acc": 0.8079999999999999,
+          "metrics": {
+            "accuracy": 0.8029372496662216,
+            "loss": 0.7044910040016327,
+            "top3_accuracy": 0.9375166889185581,
+            "macro_f1": 0.7966031082812243,
+            "major_accuracy": 0.9351134846461949
+          },
+          "checkpoint": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/models/mobilenetv3small_kfold_dedupe_gui_f2_trash30_best.pt"
+        }
+      ]
+    }
+  },
+  "aggregate_csv": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/kfold_dedupe_gui_4models_summary.csv",
+  "fold_csv": "/mnt/home/probation-03/kel-16/Probation_IS-Lab_Team-16/outputs/results/kfold_dedupe_gui_4models_fold_metrics.csv",
+  "note": "Tanpa MobileNetV3-Large TV. Mean\u00b1std lintas fold = dasar pemilihan model final (mean tertinggi, std terkecil sebagai tie-breaker).",
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.15.0+cu132",
+    "torchvision": "0.29.2+cu132",
+    "timm": "1.0.31"
+  }
+}
